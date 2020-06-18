@@ -9,33 +9,60 @@ namespace mStats
 {
     public class ModStats
     {
-        public void Init(MonoBehaviour mod, int modId)
+        private static int modId;
+        public ModStats(int modId)
         {
+            ModStats.modId = modId;
             CheckForUUID();
+            IDownloadedIt();
         }
 
         private async void CheckForUUID()
         {
-            if (!Directory.Exists(Directory.GetCurrentDirectory() + "..\\mStats\\"))
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var subFolderPath = Path.Combine(path, ".mStats");
+            if (!Directory.Exists(subFolderPath))
             {
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "..\\mStats\\");
+                Directory.CreateDirectory(subFolderPath);
                 var client = new HttpClient();
                 HttpResponseMessage response = new HttpResponseMessage();
                 try
                 {
-                    var task = client.GetAsync("http://localhost:5000/get-uuid");
+                    var task = client.GetAsync("http://localhost:5000/send-uuid/" + SystemInfo.deviceUniqueIdentifier);
                     task.Wait();
                     response = task.Result;
                 } catch (Exception)
                 {
                     response.StatusCode = HttpStatusCode.RequestTimeout;
                 }
-                var newTask = response.Content.ReadAsStringAsync();
-                newTask.Wait();
-                string uuid = newTask.Result;
-                using (StreamWriter writer = File.CreateText(Directory.GetCurrentDirectory() + "..\\mStats\\mStats.txt")){
-                    await writer.WriteAsync(uuid);
+                using (StreamWriter writer = File.CreateText(Path.Combine(subFolderPath, "mStats.txt")))
+                {
+                    await writer.WriteAsync(SystemInfo.deviceUniqueIdentifier);
                 }
+                using (StreamWriter writer = File.CreateText(Path.Combine(subFolderPath, "README.txt")))
+                {
+                    await writer.WriteAsync("This is a download tracker for SkaterXL mods. Please do NOT delete the mStats.txt file unless you wish your downloads to not be tracked.");
+                }
+            }
+
+        }
+
+        private void IDownloadedIt()
+        {
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var uuidPath = Path.Combine(path, ".mStats", "mStats.txt");
+            string uuid = File.ReadAllText(uuidPath);
+            var client = new HttpClient();
+            HttpResponseMessage response = new HttpResponseMessage();
+            try
+            {
+                var task = client.GetAsync("http://localhost:5000/idownloadedit/" + ModStats.modId + "/" + uuid);
+                task.Wait();
+                response = task.Result;
+            }
+            catch (Exception)
+            {
+                response.StatusCode = HttpStatusCode.RequestTimeout;
             }
 
         }

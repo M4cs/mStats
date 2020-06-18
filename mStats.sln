@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mStats", "mStats.csproj", "{B3588093-2616-428D-9FD6-4F31F79B41E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLEsc", "..\XLEsc\XLEsc.csproj", "{03E03881-5DC8-4206-8EC9-8C3754367913}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B3588093-2616-428D-9FD6-4F31F79B41E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3588093-2616-428D-9FD6-4F31F79B41E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3588093-2616-428D-9FD6-4F31F79B41E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E03881-5DC8-4206-8EC9-8C3754367913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E03881-5DC8-4206-8EC9-8C3754367913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E03881-5DC8-4206-8EC9-8C3754367913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E03881-5DC8-4206-8EC9-8C3754367913}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
