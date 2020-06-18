@@ -16,3 +16,17 @@ Contact me on Discord @macs#0420, you'll find me easily and active in the SXL Mo
 I'm working on a site [SXLServers.com](https://sxlservers.com) and I thought this would be a cool addition as a developer tool. 
 
 You will be able to find live download counts here: https://mstats.sxlservers.com
+
+# How
+
+Add `mStats.dll` from the Releases tab as a Reference in your project (Make sure to copy locally and package with your mod!)
+
+In your `onToggle` function or wherever call something like this:
+
+
+```
+int modId = 1234;
+var modStats = new ModStats(modId);
+```
+
+Yeah, that's pretty much it :)
