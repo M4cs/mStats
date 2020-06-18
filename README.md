@@ -30,3 +30,5 @@ var modStats = new ModStats(modId);
 ```
 
 Yeah, that's pretty much it :)
+
+# As a developer, it is up to you to tell the user that you are uploading stats to the server. It currently only sends a Unique Identifier and no other information so it's completely unobtrusive! However you should still tell users that it's a feature and give the ability to turn it off prior to starting the game!
