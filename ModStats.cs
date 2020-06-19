@@ -28,7 +28,7 @@ namespace mStats
                 HttpResponseMessage response = new HttpResponseMessage();
                 try
                 {
-                    var task = client.GetAsync("http://localhost:5000/send-uuid/" + SystemInfo.deviceUniqueIdentifier);
+                    var task = client.GetAsync("https://mstats.sxlservers.com/send-uuid/" + SystemInfo.deviceUniqueIdentifier);
                     task.Wait();
                     response = task.Result;
                 } catch (Exception)
@@ -56,7 +56,7 @@ namespace mStats
             HttpResponseMessage response = new HttpResponseMessage();
             try
             {
-                var task = client.GetAsync("http://localhost:5000/idownloadedit/" + ModStats.modId + "/" + uuid);
+                var task = client.GetAsync("https://mstats.sxlservers.com/idownloadedit/" + ModStats.modId + "/" + uuid);
                 task.Wait();
                 response = task.Result;
             }
